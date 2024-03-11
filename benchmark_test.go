@@ -18,13 +18,26 @@ func initStruct() myStruct {
 	}
 }
 
+func getEmptyStruct() myStruct {
+	return myStruct{}
+}
+
 func getPtr() *myStruct {
 	s := initStruct()
 	return &s
 }
 
+func getNilPtr() *myStruct {
+	var s myStruct
+	return &s
+}
+
 func getOption() GOption[myStruct] {
 	return Some(initStruct())
+}
+
+func getEmpty() GOption[myStruct] {
+	return None[myStruct]()
 }
 
 func BenchmarkPointer(b *testing.B) {
@@ -33,6 +46,8 @@ func BenchmarkPointer(b *testing.B) {
 		for pb.Next() {
 			ptr := getPtr()
 			json.Marshal(ptr)
+			nilPtr := getNilPtr()
+			json.Marshal(nilPtr)
 		}
 	})
 }
@@ -43,6 +58,8 @@ func BenchmarkOption(b *testing.B) {
 		for pb.Next() {
 			val := getOption()
 			json.Marshal(val)
+			empty := getEmpty()
+			json.Marshal(empty)
 		}
 	})
 }
@@ -53,6 +70,8 @@ func BenchmarkValue(b *testing.B) {
 		for pb.Next() {
 			val := initStruct()
 			json.Marshal(val)
+			empty := getEmptyStruct()
+			json.Marshal(empty)
 		}
 	})
 }

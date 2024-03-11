@@ -12,10 +12,10 @@ Strongly inspired from [Scala option pattern](https://www.scala-lang.org/api/2.1
 
 ## Benchmark
 
+With 50% of `None` and 50% of `Some` the benchmark is:
 | Name                | Iterations | Time per operation | Memory per operation | Allocations per operation |
 |---------------------|------------|--------------------|----------------------|---------------------------|
-| BenchmarkPointer-10 | 13428400   | 89.83 ns/op        | 160 B/op             | 3 allocs/op               |
-| **BenchmarkOption-10**  | 6814846    | 174.3 ns/op        | 272 B/op             | 5 allocs/op               |
-| BenchmarkValue-10   | 13407333   | 90.60 ns/op        | 160 B/op             | 3 allocs/op               |
-
+| BenchmarkPointer-10 | 7597224    | 161.7 ns/op        | 304 B/op             | 6 allocs/op               |                    |                      |                           |
+| **BenchmarkOption-10**  | 5809479    | 212.6 ns/op        | 336 B/op             | 8 allocs/op               |                                                               |                      |                           |
+| BenchmarkValue-10   | 7430028    | 162.2 ns/op        | 304 B/op             | 6 allocs/op               |                                                               |                      |                           |
 
